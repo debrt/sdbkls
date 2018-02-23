@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GUI
+public class mainWindow
 {
     JFrame frame;
     JTabbedPane tabs;
