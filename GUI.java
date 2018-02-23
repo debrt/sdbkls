@@ -2,10 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GUI
-{
-    public GUI()
-    {
-        
-    }
+public class GUI {
+	public GUI() {
+		
+	}
 }
