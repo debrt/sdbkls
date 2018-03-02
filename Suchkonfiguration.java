@@ -6,15 +6,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class Suchkonfiguration
 {
+	
+	static JPanel konfiguration;
    
     public Suchkonfiguration()
     {
     	
-    	public JPanel konfiguration = new JPanel();
+    	JPanel konfiguration = new JPanel();
     }
     
     
-    public JPanel getPanel() {
+    public static JPanel getPanel() {
     	
     	return(konfiguration);
     }
