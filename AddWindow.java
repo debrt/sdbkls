@@ -9,6 +9,7 @@ public class AddWindow extends JFrame {
 
 	public AddWindow() {
 		super("Schüler hinzufügen");
+		
 		setLayout(new GridBagLayout());
 		
 		JLabel nameLabel = new JLabel("Nachname: ");
