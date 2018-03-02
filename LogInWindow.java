@@ -53,6 +53,8 @@ public class LogInWindow {
 	
 	public LogInWindow(){        
 			
+		MainTable testDataOutput = new MainTable();
+		
 		addFenster();
 		addMainPanel();
 		addTitelPanel();
@@ -124,7 +126,7 @@ public class LogInWindow {
 	private void addImg(){
 		klsLogoLabel = new JLabel();
 		try{
-			BufferedImage klsLogo = ImageIO.read(new File("src/kls_logo.png"));
+			BufferedImage klsLogo = ImageIO.read(new File("kls_logo.png"));
 			klsLogoLabel = new JLabel(new ImageIcon(klsLogo));
 		} catch(Exception e) {System.out.println("Fehler beim Laden des Bildes: " + e);}
 		if (klsLogoLabel == null){
