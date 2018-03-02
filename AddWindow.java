@@ -1,7 +1,5 @@
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
@@ -22,9 +20,9 @@ public class AddWindow extends JFrame {
 		JLabel hausNrLabel = new JLabel("Hausnummer: ");
 		JLabel plzLabel = new JLabel("PLZ: ");
 		JLabel ortLabel = new JLabel("Ort: ");
+		JLabel beitrittDatLabel = new JLabel("KLS-Beitrittsdatum: ");
 		JLabel medBesLabel = new JLabel("Medizinische Besonderheiten: ");
 		JLabel anmerkLabel = new JLabel("Anmerkungen: ");
-		JLabel beitrittDatLabel = new JLabel("KLS-Beitrittsdatum: ");
 		
 		JTextField nameInput = new JTextField();
 		JTextField vornameInput = new JTextField();
@@ -34,71 +32,82 @@ public class AddWindow extends JFrame {
 		JTextField hausNrInput = new JTextField();
 		JTextField plzInput = new JTextField();
 		JTextField ortInput = new JTextField();
+		JTextField beitrittDatInput = new JTextField();
 		JTextArea medBesInput = new JTextArea();
 		JTextArea anmerkInput = new JTextArea();
-		JTextField beitrittDatInput = new JTextField();
 		
-		GridBagConstraints ctts = new GridBagConstraints(0, 0, 1, 1, 1, 1,
-				0, 0, new Insets(0, 0, 0, 0), 0, 0);
+		GridBagConstraints ctts = new GridBagConstraints(0, 0, 1, 1, 0, 0,
+				GridBagConstraints.WEST, 0, new Insets(0, 0, 0, 0), 0, 0);
 		add(nameLabel, ctts);
-		ctts.gridx = 1;
-		add(nameInput);
-		
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(vornameLabel);
-		ctts.gridx = 1;
-		add(vornameInput);
-		
+		add(vornameLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(klasseLabel);
-		ctts.gridx = 1;
-		add(klasseInput);
-		
+		add(klasseLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(gebDatumLabel);
-		ctts.gridx = 1;
-		add(gebDatumInput);
-		
+		add(gebDatumLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(strasseLabel);
-		ctts.gridx = 1;
-		add(strasseInput);
-		
+		add(strasseLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(hausNrLabel);
-		ctts.gridx = 1;
-		add(hausNrInput);
-		
+		add(hausNrLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(plzLabel);
-		ctts.gridx = 1;
-		add(plzInput);
-		
+		add(plzLabel, ctts);
 		ctts.gridy++;
-		ctts.gridx = 0;
-		add(ortLabel);
-		add(ortInput);
-		add(medBesLabel);
-		JScrollPane medBesPane = new JScrollPane(medBesInput);
-		add(medBesPane);
-		add(anmerkLabel);
-		add(new JScrollPane(anmerkInput));
-		add(beitrittDatLabel);
-		add(beitrittDatInput);
+		add(ortLabel, ctts);
+		ctts.gridy++;
+		add(beitrittDatLabel, ctts);
+		ctts.gridy++;
+		add(medBesLabel, ctts);
+		ctts.gridy++;
+		add(anmerkLabel, ctts);
+		
+		ctts.gridx = 1;
+		ctts.gridy = 0;
+		ctts.weightx = 1;
+		ctts.fill = GridBagConstraints.HORIZONTAL;
+		add(nameInput, ctts);
+		ctts.gridy++;
+		add(vornameInput, ctts);
+		ctts.gridy++;
+		add(klasseInput, ctts);
+		ctts.gridy++;
+		add(gebDatumInput, ctts);
+		ctts.gridy++;
+		add(strasseInput, ctts);
+		ctts.gridy++;
+		add(hausNrInput, ctts);
+		ctts.gridy++;
+		add(plzInput, ctts);
+		ctts.gridy++;
+		add(ortInput, ctts);
+		ctts.gridy++;
+		add(beitrittDatInput, ctts);
+		ctts.weighty = 1;
+		ctts.fill = GridBagConstraints.BOTH;
+		ctts.anchor = GridBagConstraints.SOUTHEAST;
+		ctts.gridy++;
+		medBesInput.setBorder(nameInput.getBorder());
+		add(medBesInput, ctts);
+		ctts.gridy++;
+		anmerkInput.setBorder(nameInput.getBorder());
+		add(anmerkInput, ctts);
 		
 		JButton addButton = new JButton("OK");
 		JButton cancelButton = new JButton("Abbrechen");
 		
-		add(addButton);
-		add(cancelButton);
+		JPanel buttonsPanel = new JPanel();
+		ctts.gridy++;
+		ctts.weighty = 0;
+		add(buttonsPanel, ctts);
+		
+		ctts = new GridBagConstraints(0, 0, 1, 1, 1, 0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 0), 0, 0);
+		buttonsPanel.add(addButton, ctts);
+		ctts.gridx++;
+		buttonsPanel.add(cancelButton, ctts);
 		
 		pack();
+		setSize(600, getHeight());
 		setVisible(true);
 	}
 	
