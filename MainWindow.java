@@ -34,7 +34,7 @@ public class MainWindow
         frame = new JFrame("SchülerDatenbank");
         tabs = new JTabbedPane();
         tab1 = new JPanel();
-        tab2 = new JPanel();
+        tab2 = Suchkonfiguration.getPanel();
         tab1N = new JPanel();
         tab1S = new JPanel();
         tab1W = new JPanel();
