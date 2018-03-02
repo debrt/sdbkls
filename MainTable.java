@@ -3,6 +3,11 @@ import java.sql.ResultSet;
 
 public class MainTable {
 	
+	public static void main(String[] args){
+		MainTable testTable = new MainTable();
+	}
+	
+	
 	public MainTable(){
 		
 		try{
