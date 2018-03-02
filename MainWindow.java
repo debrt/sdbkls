@@ -31,7 +31,7 @@ public class MainWindow
     {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
-        frame = new JFrame("SchülerDatenbank");
+        frame = new JFrame("SchÃ¼lerDatenbank");
         tabs = new JTabbedPane();
         tab1 = new JPanel();
         tab2 = new JPanel();
@@ -49,7 +49,7 @@ public class MainWindow
         frame.setSize(600, 800);
         frame.setVisible(true);
 
-        tabs.addTab("Übersicht", tab1);
+        tabs.addTab("ï¿½bersicht", tab1);
         tabs.addTab("Suchkonfiguration", tab2);
         frame.add(tabs);
         tab1.setLayout(new BorderLayout());
