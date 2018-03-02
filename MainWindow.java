@@ -20,6 +20,10 @@ public class MainWindow
     JPanel tab1C;
     JTable table;
     
+    JButton search;
+    JButton settings;
+    JButton add;
+    
     JTextField suche;
     
 	public static void main(String[] args){
