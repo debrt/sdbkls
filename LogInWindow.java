@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -53,7 +55,7 @@ public class LogInWindow {
 	
 	public LogInWindow(){        
 			
-		MainTable testDataOutput = new MainTable();
+		//MainTable testDataOutput = new MainTable();
 		
 		addFenster();
 		addMainPanel();
@@ -107,12 +109,12 @@ public class LogInWindow {
 	}
 	
 	private static void addBenutzerPanel(){
-		benutzerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		benutzerPanel = new JPanel();
 		benutzerPanel.setBackground(new Color(1,68,131));
 	}
 	
 	private static void addPwPanel(){
-		pwPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		pwPanel = new JPanel();
 		pwPanel.setBackground(new Color(1,68,131));
 	}
 	
@@ -153,7 +155,7 @@ public class LogInWindow {
 	
 	private static void addLoginButton(){
 		loginButton = new JButton("Einloggen");
-		loginButton.setPreferredSize(new Dimension(90,28));
+		//loginButton.setPreferredSize(new Dimension(90,28));
 		loginAL = new ActionListener(){
 			public void actionPerformed(ActionEvent loginButtonClicked){
 			        char[] pwInput = pwField.getPassword();
@@ -174,8 +176,8 @@ public class LogInWindow {
 	}
 	
 	private static void addHelpButton(){
-		helpButton = new JButton("Hilfe");
-		helpButton.setPreferredSize(new Dimension(90,28));
+		helpButton = new JButton("  Support  ");
+		//helpButton.setPreferredSize(new Dimension(90,28));
 		helpAL = new ActionListener(){
 			public void actionPerformed(ActionEvent helpButtonClicked){
 				JOptionPane.showMessageDialog(loginFenster, "<html><body>"
