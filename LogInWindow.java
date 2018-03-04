@@ -120,7 +120,7 @@ public class LogInWindow {
 	
 	private static void addTitelLabel(){
 		titelLabel = new JLabel("<html><body>"
-				+ "KÖNIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
+				+ "KÃ¶NIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
 				+ "</html></body>");
 		titelLabel.setForeground(Color.WHITE);
 	}
