@@ -1,5 +1,3 @@
-//TEST, UM ZU SCHAUEN, OB VINCENT PUSHEN KANN
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -35,9 +33,10 @@ public class MainWindow
     {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
-        frame = new JFrame("SchÃ¼lerDatenbank");
+        frame = new JFrame("SchülerDatenbank");
         tabs = new JTabbedPane();
         tab1 = new JPanel();
+//        Suchkonfiguration sk = new Suchkonfiguration();
         tab2 = Suchkonfiguration.getPanel();
         tab1N = new JPanel();
         tab1S = new JPanel();
@@ -45,15 +44,23 @@ public class MainWindow
         tab1E = new JPanel();
         tab1C = new JPanel();
         
+        search = new JButton("Suchen");
+        add = new JButton("Hinzufügen");
+        settings = new JButton("Einstellungen");
+        
+        tab1W.setLayout(new BoxLayout(tab1W, BoxLayout.Y_AXIS));
+        
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE ); frame.pack(); frame.setVisible( true );
         
         suche = new JTextField("Suchbegriff...");
         suche.setSize(600,300);
 
         frame.setSize(600, 800);
-        frame.setVisible(true);
+        
+        tab1W.add(add);
+        tab1W.add(settings);
 
-        tabs.addTab("ï¿½bersicht", tab1);
+        tabs.addTab("Übersicht", tab1);
         tabs.addTab("Suchkonfiguration", tab2);
         frame.add(tabs);
         tab1.setLayout(new BorderLayout());
@@ -64,9 +71,12 @@ public class MainWindow
         tab1.add(tab1C, BorderLayout.CENTER);
         
         tab1N.add(suche);
+        tab1N.add(search);
         //tab1C.add(new JTextField("test"));
         tab1C.setLayout(new BorderLayout());
         tab1C.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        frame.setVisible(true);
         
         
 
