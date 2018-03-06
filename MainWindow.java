@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +24,8 @@ public class MainWindow
     JButton settings;
     JButton add;
     
+    JLabel lb;
+    
     JTextField suche;
     
 	public static void main(String[] args){
@@ -36,7 +40,6 @@ public class MainWindow
         frame = new JFrame("SchülerDatenbank");
         tabs = new JTabbedPane();
         tab1 = new JPanel();
-//        Suchkonfiguration sk = new Suchkonfiguration();
         tab2 = Suchkonfiguration.getPanel();
         tab1N = new JPanel();
         tab1S = new JPanel();
@@ -47,6 +50,15 @@ public class MainWindow
         search = new JButton("Suchen");
         add = new JButton("Hinzufügen");
         settings = new JButton("Einstellungen");
+        
+        search.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		search();
+        	}
+        	
+        });
+        
+        lb = new JLabel("results...");
         
         tab1W.setLayout(new BoxLayout(tab1W, BoxLayout.Y_AXIS));
         
@@ -59,6 +71,7 @@ public class MainWindow
         
         tab1W.add(add);
         tab1W.add(settings);
+        tab1W.add(lb);
 
         tabs.addTab("Übersicht", tab1);
         tabs.addTab("Suchkonfiguration", tab2);
@@ -82,4 +95,32 @@ public class MainWindow
 
         
     }
+    
+    public void search() {
+    	String searchText = suche.getText();
+    	ArrayList<String> results = new ArrayList<String>();
+    	ArrayList<Integer> resultColumns = new ArrayList<Integer>();
+    	ArrayList<Integer> resultRows = new ArrayList<Integer>();
+    	
+    	for(int i=0; i < table.getRowCount(); i++) 
+    	{
+    		for (int j=0; j < table.getColumnCount(); j++)
+    		{
+    			String cell = (String) table.getModel().getValueAt(i,j);
+    			if (cell.contains(searchText)) {
+    				results.add(cell);
+    				resultColumns.add(j);
+    				resultRows.add(i);
+    			}
+    		}
+    	}
+    	
+    	lb.setText(results.toString());
+    	
+    	
+    	for (int i = 0; i < results.size(); i++) {
+    		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
+    	}
+    }
+    
 }
