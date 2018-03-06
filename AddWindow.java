@@ -1,13 +1,15 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 public class AddWindow extends JFrame {
 	private static final long serialVersionUID = 7094360393888216438L;
 
-	public AddWindow() {
+	public AddWindow(AddWindowListener listener) {
 		super("Schüler hinzufügen");
 		
 		setLayout(new GridBagLayout());
@@ -94,6 +96,30 @@ public class AddWindow extends JFrame {
 		JButton addButton = new JButton("OK");
 		JButton cancelButton = new JButton("Abbrechen");
 		
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				listener.onOkButtonClicked(vornameInput.getText().trim(),
+						nameInput.getText().trim(),
+						klasseInput.getText().trim(),
+						gebDatumInput.getText().trim(),
+						strasseInput.getText().trim(),
+						hausNrInput.getText().trim(),
+						plzInput.getText().trim(),
+						ortInput.getText().trim(),
+						beitrittDatInput.getText().trim(),
+						medBesInput.getText().trim(),
+						anmerkInput.getText().trim());
+			}
+		});
+		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				listener.onCancelled();
+			}
+		});
+		
 		JPanel buttonsPanel = new JPanel();
 		ctts.gridy++;
 		ctts.weighty = 0;
@@ -112,6 +138,11 @@ public class AddWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new AddWindow();
+		new AddWindow(new AddWindowListener() {
+			public void onOkButtonClicked(String vorname, String name, String klasse, String gebDatum, String strasse,
+					String hausNummer, String plz, String ort, String beitrittsDatum, String medBesonderheiten,
+					String anmerkungen) { }
+			public void onCancelled() { }
+		});
 	}
 }
