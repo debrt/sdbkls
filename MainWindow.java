@@ -114,6 +114,7 @@ public class MainWindow
     			}
     		}
     	}
+    	//test
     	
     	lb.setText(results.toString());
     	
