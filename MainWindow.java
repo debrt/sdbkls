@@ -1,8 +1,20 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -29,7 +41,6 @@ public class MainWindow
     JTextField suche;
     
 	public static void main(String[] args){
-		MainWindow mainWindow = new MainWindow();
 	}
 	
 
@@ -37,15 +48,24 @@ public class MainWindow
     {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
-        frame = new JFrame("SchülerDatenbank");
+        frame = new JFrame("SDBKLS");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         tabs = new JTabbedPane();
         tab1 = new JPanel();
+        tab1.setBackground(new Color(1,68,131));
         tab2 = Suchkonfiguration.getPanel();
+        tab2.setBackground(new Color(1,68,131));
         tab1N = new JPanel();
+        tab1N.setBackground(new Color(1,68,131));
+        tab1N.setLayout(new BorderLayout());
         tab1S = new JPanel();
+        tab1S.setBackground(new Color(1,68,131));
         tab1W = new JPanel();
+        tab1W.setBackground(new Color(1,68,131));
         tab1E = new JPanel();
+        tab1E.setBackground(new Color(1,68,131));
         tab1C = new JPanel();
+        tab1C.setBackground(new Color(1,68,131));
         
         search = new JButton("Suchen");
         add = new JButton("Hinzufügen");
@@ -65,7 +85,7 @@ public class MainWindow
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE ); frame.pack(); frame.setVisible( true );
         
         suche = new JTextField("Suchbegriff...");
-        suche.setSize(600,300);
+        suche.setColumns(10);
 
         frame.setSize(600, 800);
         
@@ -83,9 +103,22 @@ public class MainWindow
         tab1.add(tab1E, BorderLayout.EAST);
         tab1.add(tab1C, BorderLayout.CENTER);
         
-        tab1N.add(suche);
-        tab1N.add(search);
-        //tab1C.add(new JTextField("test"));
+        
+        JPanel tab1NL = new JPanel();
+        tab1NL.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
+        JPanel tab1NR = new JPanel();
+        tab1NR.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        
+        tab1N.add(tab1NL, BorderLayout.CENTER);
+        tab1N.add(tab1NR);
+        
+        tab1NL.add(LogInWindow.klsLogoLabel);
+        tab1NL.add(LogInWindow.titelLabel);
+        tab1NR.add(suche);
+        tab1NR.add(search);
+        
+        
         tab1C.setLayout(new BorderLayout());
         tab1C.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -123,5 +156,6 @@ public class MainWindow
     		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
     	}
     }
+    
     
 }
