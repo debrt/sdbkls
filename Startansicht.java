@@ -131,15 +131,15 @@ public class Startansicht {
         settings = new JButton("Einstellungen");
         addPrintButton();
         
-        lb = new JLabel("results...");
-        lb.setForeground(Color.WHITE);
+        //lb = new JLabel("results...");
+        //lb.setForeground(Color.WHITE);
         tab1W = new JPanel();
         tab1W.setBackground(new Color(1,68,131));
     	tab1W.setLayout(new BoxLayout(tab1W, BoxLayout.Y_AXIS));
         tab1W.add(add);
         tab1W.add(settings);
         tab1W.add(print);
-        tab1W.add(lb);
+        //tab1W.add(lb);
 	}
 	public static void search() {
     	String searchText = suche.getText();
