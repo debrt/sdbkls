@@ -45,6 +45,7 @@ public class LogInWindow {
 	static char[] julianNutzername = {'j','u','l','i','a','n'};
 	static char[] benediktNutzername = {'b','e','n','e','d','i','k','t'};
 	static char[] sidneyNutzername = {'s','i','d','n','e','y'};
+	static char[] theesfeldNutzername = {'t','h','e','e','s','f','e','l','d'};
 	static char[] defNutzername = {};
 	static String aktuellerBenutzer;
 	static JLabel akutellerBenutzerLabel = new JLabel("Kein Benutzer");
@@ -216,6 +217,10 @@ public class LogInWindow {
 		}
 		if (Arrays.equals(benutzerInput, defNutzername)){
 			char[] pwEcht = {};
+			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
+		}
+		if (Arrays.equals(benutzerInput, theesfeldNutzername)){
+			char[] pwEcht = {'p','a','s','s','w','o','r','t'};
 			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
 		} 
 	    return pwStimmt;

@@ -47,7 +47,7 @@ public class MainWindow {
     public MainWindow() {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
-        frame = new JFrame("SchülerDatenbank");
+        frame = new JFrame("KLS Schuldatenbank");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         tabs = new JTabbedPane();
         

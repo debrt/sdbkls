@@ -3,21 +3,18 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.print.PrinterAbortException;
 import java.awt.print.PrinterJob;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+<<<<<<< HEAD
 import javax.swing.JCheckBox;
+=======
+import javax.swing.JComboBox;
+>>>>>>> branch 'master' of https://github.com/debrt/sdbkls
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -94,9 +91,18 @@ public class Startansicht {
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
         suche.setColumns(20);
+<<<<<<< HEAD
         tab1NR.add(cbResultsViewToggle);
+=======
+        JLabel klassenAuswahlLabel = new JLabel(" in Klasse bzw. Stufe");
+        klassenAuswahlLabel.setForeground(Color.WHITE);
+        String[] klassen = {"*ALLE*","7","8","9","10","Q1","Q2","Q3","Q4"};
+        JComboBox klasseAuswahl = new JComboBox(klassen);
+>>>>>>> branch 'master' of https://github.com/debrt/sdbkls
         tab1NR.add(suche);
         tab1NR.add(search);
+        tab1NR.add(klassenAuswahlLabel);
+        tab1NR.add(klasseAuswahl);
         tab1N.add(tab1NR);
 	}
 	static void east(){
@@ -108,8 +114,7 @@ public class Startansicht {
         tab1S.setBackground(new Color(1,68,131));
 	}
 	static void west(JFrame frame){
-        add = new JButton("Hinzufï¿½gen");
-        
+        add = new JButton("Hinzufügen");
         add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddWindowListener listener = new AddWindowListener() {
@@ -132,11 +137,8 @@ public class Startansicht {
 				wnd.setVisible(true);
 			}
 		});
-        
-        
         settings = new JButton("Einstellungen");
         addPrintButton();
-        
         //lb = new JLabel("results...");
         //lb.setForeground(Color.WHITE);
         tab1W = new JPanel();
@@ -192,7 +194,7 @@ public class Startansicht {
 	}
 	
 	static String[] getRow(){
-		String[] newRow = {"Qi3", "Mustermann", "Max", "20.01.1999"};
+		String[] newRow = {"Q4", "Mustermann", "Max", "20.01.1999"};
 		return newRow;
 	}
 }
