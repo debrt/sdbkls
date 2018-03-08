@@ -61,6 +61,7 @@ public class MainWindow {
 							String beitrittsDatum, String medBesonderheiten,
 							String anmerkungen) {
 						frame.setEnabled(true);
+						// TODO: Daten in Datenbank eintragen
 					}
 					public void onCancelled() {
 						frame.setEnabled(true);
