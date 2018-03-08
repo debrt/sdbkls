@@ -3,6 +3,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
@@ -118,6 +120,18 @@ public class AddWindow extends JFrame {
 				setVisible(false);
 				listener.onCancelled();
 			}
+		});
+		
+		addWindowListener(new WindowListener() {
+			public void windowOpened(WindowEvent e) { }
+			public void windowIconified(WindowEvent e) { }
+			public void windowDeiconified(WindowEvent e) { }
+			public void windowDeactivated(WindowEvent e) { }
+			public void windowClosing(WindowEvent e) {
+				listener.onCancelled();
+			}
+			public void windowClosed(WindowEvent e) { }
+			public void windowActivated(WindowEvent e) { }
 		});
 		
 		JPanel buttonsPanel = new JPanel();
