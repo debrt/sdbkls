@@ -77,6 +77,10 @@ public class MainWindow {
         
         settings = new JButton("Einstellungen");
         
+        tab1 = Startansicht.getPanel();
+        tab1.setBackground(new Color(1,68,131));
+        tabs.addTab("Suchkonfiguration", tab1);
+        
         tab2 = Suchkonfiguration.getPanel();
         tab2.setBackground(new Color(1,68,131));
         tabs.addTab("Suchkonfiguration", tab2);

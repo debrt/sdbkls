@@ -42,7 +42,7 @@ public class Suchkonfiguration{
 		tab1C.setBackground(new Color(1,68,131));
 		tab1C.setLayout(new BoxLayout(tab1C, BoxLayout.Y_AXIS));
 		String[] suchkriterien = {};
-    	try{
+    	/*try{
     		ResultSet rset = DBHelper.st.executeQuery(
     				"SELECT * FROM schueler where Klasse = 'Klasse';");
     		while (rset.next()) {
@@ -54,7 +54,7 @@ public class Suchkonfiguration{
     		}
     		}catch (Exception xc) {
     			xc.printStackTrace();
-    		}
+    		}*/
     	//Spaltennamen aus sql einbinden und dann mit checkboxen verbinden 
     	for(int i=0; i<suchkriterien.length; i++) {
     		JCheckBox cb = new JCheckBox(suchkriterien[i]);
@@ -71,7 +71,7 @@ public class Suchkonfiguration{
 	static void east(){
 		tab1E = new JPanel();
         tab1E.setBackground(new Color(1,68,131));
-        JButton filtern = new JButton("Filter übernehmen");
+        JButton filtern = new JButton("Filter ï¿½bernehmen");
     	tab1E.add(filtern);
 	}
 	static void south(){
