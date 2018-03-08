@@ -79,7 +79,7 @@ public class MainWindow {
         
         tab1 = Startansicht.getPanel();
         tab1.setBackground(new Color(1,68,131));
-        tabs.addTab("Suchkonfiguration", tab1);
+        tabs.addTab("Übersicht", tab1);
         
         tab2 = Suchkonfiguration.getPanel();
         tab2.setBackground(new Color(1,68,131));
@@ -87,5 +87,6 @@ public class MainWindow {
         
         frame.add(tabs);
         frame.setVisible(true);
+        frame.setSize(400, 400);
     }
 }
