@@ -48,41 +48,25 @@ public class MainWindow {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
         frame = new JFrame("SchülerDatenbank");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         tabs = new JTabbedPane();
         
         search = new JButton("Suchen");
         add = new JButton("Hinzufügen");
-        add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddWindowListener listener = new AddWindowListener() {
-					public void onOkButtonClicked(String vorname, String name,
-							String klasse, String gebDatum, String strasse,
-							String hausNummer, String plz, String ort,
-							String beitrittsDatum, String medBesonderheiten,
-							String anmerkungen) {
-						frame.setEnabled(true);
-						// TODO: Daten in Datenbank eintragen
-					}
-					public void onCancelled() {
-						frame.setEnabled(true);
-					}
-				};
-				
-				AddWindow wnd = new AddWindow(listener);
-				frame.setEnabled(false);
-				wnd.setVisible(true);
-			}
-		});
         
         
         settings = new JButton("Einstellungen");
         
-        tab1 = Startansicht.getPanel();
+        tab1 = Startansicht.getPanel(frame);
         tab1.setBackground(new Color(1,68,131));
+<<<<<<< HEAD
 <<<<<<< HEAD
         tabs.addTab("Startansicht", tab1);
 =======
         tabs.addTab("Übersicht", tab1);
+=======
+        tabs.addTab("Startansicht", tab1);
+>>>>>>> branch 'master' of https://github.com/debrt/sdbkls
         
 >>>>>>> branch 'master' of https://github.com/debrt/sdbkls
         tab2 = Suchkonfiguration.getPanel();
@@ -91,6 +75,5 @@ public class MainWindow {
         
         frame.add(tabs);
         frame.setVisible(true);
-        frame.setSize(400, 400);
     }
 }
