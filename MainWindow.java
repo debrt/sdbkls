@@ -7,8 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 
  
-public class MainWindow
-{
+public class MainWindow {
     JFrame frame;
     JTabbedPane tabs;
     JPanel tab1;
@@ -28,16 +27,15 @@ public class MainWindow
     
     JTextField suche;
     
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		MainWindow mainWindow = new MainWindow();
 	}
 	
 
-    public MainWindow()
-    {
+    public MainWindow() {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
-        frame = new JFrame("SchülerDatenbank");
+        frame = new JFrame("SchÃ¼lerDatenbank");
         tabs = new JTabbedPane();
         tab1 = new JPanel();
         tab2 = Suchkonfiguration.getPanel();
@@ -48,7 +46,29 @@ public class MainWindow
         tab1C = new JPanel();
         
         search = new JButton("Suchen");
-        add = new JButton("Hinzufügen");
+        add = new JButton("HinzufÃ¼gen");
+        add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddWindowListener listener = new AddWindowListener() {
+					public void onOkButtonClicked(String vorname, String name,
+							String klasse, String gebDatum, String strasse,
+							String hausNummer, String plz, String ort,
+							String beitrittsDatum, String medBesonderheiten,
+							String anmerkungen) {
+						frame.setEnabled(true);
+					}
+					public void onCancelled() {
+						frame.setEnabled(true);
+					}
+				};
+				
+				AddWindow wnd = new AddWindow(listener);
+				frame.setEnabled(false);
+				wnd.setVisible(true);
+			}
+		});
+        
+        
         settings = new JButton("Einstellungen");
         
         search.addActionListener(new ActionListener() {
@@ -73,7 +93,7 @@ public class MainWindow
         tab1W.add(settings);
         tab1W.add(lb);
 
-        tabs.addTab("Übersicht", tab1);
+        tabs.addTab("ï¿½bersicht", tab1);
         tabs.addTab("Suchkonfiguration", tab2);
         frame.add(tabs);
         tab1.setLayout(new BorderLayout());

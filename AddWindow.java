@@ -136,13 +136,4 @@ public class AddWindow extends JFrame {
 		setSize(600, getHeight());
 		setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-		new AddWindow(new AddWindowListener() {
-			public void onOkButtonClicked(String vorname, String name, String klasse, String gebDatum, String strasse,
-					String hausNummer, String plz, String ort, String beitrittsDatum, String medBesonderheiten,
-					String anmerkungen) { }
-			public void onCancelled() { }
-		});
-	}
 }
