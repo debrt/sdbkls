@@ -59,16 +59,7 @@ public class MainWindow {
         
         tab1 = Startansicht.getPanel(frame);
         tab1.setBackground(new Color(1,68,131));
-<<<<<<< HEAD
-<<<<<<< HEAD
         tabs.addTab("Startansicht", tab1);
-=======
-        tabs.addTab("Übersicht", tab1);
-=======
-        tabs.addTab("Startansicht", tab1);
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
-        
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
         tab2 = Suchkonfiguration.getPanel();
         tab2.setBackground(new Color(1,68,131));
         tabs.addTab("Suchkonfiguration", tab2);

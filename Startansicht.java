@@ -38,23 +38,13 @@ public class Startansicht {
     static JPanel tab1W;
     static JPanel tab1E;
     static JPanel tab1C;
-    
-<<<<<<< HEAD
-<<<<<<< HEAD
     static ActionListener printAL;
     
     public static JTable getTable() {
     	return table;
     }
     
-=======
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
-    public static JPanel getPanel(){
-=======
-    static ActionListener printAL;
-    
     public static JPanel getPanel(JFrame frame){
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
 		JPanel panel = new JPanel();
 		center();
     	north();
