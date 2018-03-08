@@ -53,7 +53,9 @@ public class Startansicht {
 	static void center(){
 		String[] attribute = {"Klasse", "Name", "Vorname", "Geburtsdatum"};
 		DefaultTableModel model = new DefaultTableModel(attribute, 0 );
+		for(int i = 0; i < 50; i++){
 		model.addRow(getRow());
+		}
     	table = new JTable(model);
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));

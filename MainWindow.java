@@ -48,6 +48,7 @@ public class MainWindow {
     	DefaultTableModel model = new DefaultTableModel(new String[] {"Test1", "Test2"}, 0 );
     	table = new JTable(model);
         frame = new JFrame("SchülerDatenbank");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         tabs = new JTabbedPane();
         
         search = new JButton("Suchen");
@@ -79,7 +80,7 @@ public class MainWindow {
         
         tab1 = Startansicht.getPanel();
         tab1.setBackground(new Color(1,68,131));
-        tabs.addTab("Suchkonfiguration", tab1);
+        tabs.addTab("Startansicht", tab1);
         
         tab2 = Suchkonfiguration.getPanel();
         tab2.setBackground(new Color(1,68,131));
