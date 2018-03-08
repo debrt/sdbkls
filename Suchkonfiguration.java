@@ -38,6 +38,7 @@ public class Suchkonfiguration{
     	konfiguration.add(tab1W, BorderLayout.WEST);
     	konfiguration.add(tab1E, BorderLayout.EAST);
     	return(konfiguration);
+    	//test
     }
     
 
