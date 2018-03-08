@@ -17,6 +17,9 @@ public class Suchkonfiguration{
     static JPanel tab1W;
     static JPanel tab1E;
     static JPanel tab1C;
+	static ArrayList<String> suchkriterien = new ArrayList<String>();
+	static ArrayList<JCheckBox> checkboxen = new ArrayList<JCheckBox>();
+    static JTable table;
 	
     public Suchkonfiguration(){
     }
@@ -36,12 +39,13 @@ public class Suchkonfiguration{
     	konfiguration.add(tab1E, BorderLayout.EAST);
     	return(konfiguration);
     }
+    
+
 	
 	static void center(){
 		tab1C = new JPanel();
 		tab1C.setBackground(new Color(1,68,131));
 		tab1C.setLayout(new BoxLayout(tab1C, BoxLayout.Y_AXIS));
-		String[] suchkriterien = {};
     	/*try{
     		ResultSet rset = DBHelper.st.executeQuery(
     				"SELECT * FROM schueler where Klasse = 'Klasse';");
@@ -55,12 +59,24 @@ public class Suchkonfiguration{
     		}catch (Exception xc) {
     			xc.printStackTrace();
     		}*/
+		//temporär:-----------------------
+		try {
+			for(int i=0; i < Startansicht.getTable().getColumnCount(); i++) {
+				suchkriterien.add(Startansicht.getTable().getColumnName(i));
+			}
+			
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		//---------------------------------
     	//Spaltennamen aus sql einbinden und dann mit checkboxen verbinden 
-    	for(int i=0; i<suchkriterien.length; i++) {
-    		JCheckBox cb = new JCheckBox(suchkriterien[i]);
+    	for(int i=0; i<suchkriterien.size(); i++) {
+    		JCheckBox cb = new JCheckBox(suchkriterien.get(i));
     		cb.setBackground(new Color(1,68,131));
     		cb.setForeground(Color.WHITE);
+    		cb.setSelected(true);
     		tab1C.add(cb);
+    		checkboxen.add(cb);
     	}
 	}
 	static void north(){
@@ -72,6 +88,24 @@ public class Suchkonfiguration{
 		tab1E = new JPanel();
         tab1E.setBackground(new Color(1,68,131));
         JButton filtern = new JButton("Filter ï¿½bernehmen");
+        
+        filtern.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		for (int i=0; i < checkboxen.size(); i++) {
+        			if(!checkboxen.get(i).isSelected()) {
+        				Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
+        			}
+        			else {
+        				
+        				//Startansicht.getTable().addColumn(Startansicht.getTable().getColumnModel().getColumn(i));
+        				
+        			}
+        		}
+        	}
+        	
+        });
+        
     	tab1E.add(filtern);
 	}
 	static void south(){

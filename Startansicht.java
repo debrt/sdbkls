@@ -40,6 +40,10 @@ public class Startansicht {
     
     static ActionListener printAL;
     
+    public static JTable getTable() {
+    	return table;
+    }
+    
     public static JPanel getPanel(){
 		JPanel panel = new JPanel();
 		center();
