@@ -4,14 +4,18 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterAbortException;
+import java.awt.print.PrinterJob;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,6 +27,7 @@ public class Startansicht {
 	static JTable table;
     static JButton search;
     static JButton settings;
+    static JButton print;
     static JButton add;
     static JLabel lb;
     static JTextField suche;
@@ -32,6 +37,8 @@ public class Startansicht {
     static JPanel tab1W;
     static JPanel tab1E;
     static JPanel tab1C;
+    
+    static ActionListener printAL;
     
     public static JPanel getPanel(){
 		JPanel panel = new JPanel();
@@ -93,6 +100,8 @@ public class Startansicht {
 	static void west(){
         add = new JButton("Hinzufügen");
         settings = new JButton("Einstellungen");
+        addPrintButton();
+        
         lb = new JLabel("results...");
         lb.setForeground(Color.WHITE);
         tab1W = new JPanel();
@@ -100,6 +109,7 @@ public class Startansicht {
     	tab1W.setLayout(new BoxLayout(tab1W, BoxLayout.Y_AXIS));
         tab1W.add(add);
         tab1W.add(settings);
+        tab1W.add(print);
         tab1W.add(lb);
 	}
 	public static void search() {
@@ -119,11 +129,24 @@ public class Startansicht {
     			}
     		}
     	}
-    	lb.setText(results.toString());
+    	//lb.setText(results.toString());
     	for (int i = 0; i < results.size(); i++) {
     		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
     	}
     }
+	
+	private static void addPrintButton(){
+		print = new JButton("Drucken");
+		printAL = new ActionListener(){
+			public void actionPerformed(ActionEvent printButtonClicked){
+			        PrinterJob pj = PrinterJob.getPrinterJob();
+			        pj.printDialog();
+			        
+			    }
+		};
+		print.addActionListener(printAL);
+	}
+	
 	static String[] getRow(){
 		String[] newRow = {"Qi3", "Mustermann", "Max", "20.01.1999"};
 		return newRow;
