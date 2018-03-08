@@ -29,7 +29,7 @@ public class LogInWindow {
 	static JPanel benutzerPanel;
 	static JPanel pwPanel;
 	static JLabel titelLabel;
-	JLabel klsLogoLabel;
+	static JLabel klsLogoLabel;
 	static JButton loginButton;
 	static JButton helpButton;
 	static JLabel benutzerBeschriftung;
