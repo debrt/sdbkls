@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class Startansicht {
     static JButton settings;
     static JButton print;
     static JButton add;
+    static JCheckBox cbResultsViewToggle;
     static JLabel lb;
     static JTextField suche;
     static JPanel tab1N;
@@ -66,6 +68,7 @@ public class Startansicht {
 		DefaultTableModel model = new DefaultTableModel(attribute, 0 );
 		for(int i = 0; i < 50; i++){
 			model.addRow(getRow());
+			model.addRow(new String[]{"10A", "Bernd","Beispiel","01.01.2000"});
 		}
     	table = new JTable(model);
     	tab1C = new JPanel();
@@ -88,7 +91,10 @@ public class Startansicht {
         	
         });
         suche = new JTextField("Suchbegriff...");
+        cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
+        cbResultsViewToggle.setSelected(true);
         suche.setColumns(20);
+        tab1NR.add(cbResultsViewToggle);
         tab1NR.add(suche);
         tab1NR.add(search);
         tab1N.add(tab1NR);
@@ -161,6 +167,15 @@ public class Startansicht {
     	//lb.setText(results.toString());
     	for (int i = 0; i < results.size(); i++) {
     		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
+    	}
+    	if (cbResultsViewToggle.isSelected()) {
+    		for(int i=table.getRowCount()-1; i >= 0; i--) {
+    			if (!resultRows.contains(i)) {
+    				((DefaultTableModel) table.getModel()).removeRow(i);
+    			}
+    			
+    		}
+    	
     	}
     }
 	
