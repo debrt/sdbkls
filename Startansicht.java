@@ -64,7 +64,7 @@ public class Startansicht {
 	static void center(){
 		
     	table = new JTable(MainTable.getTable()) {
-    		public TableCellRenderer geCellRenderer(int row, int column) {
+    		public TableCellRenderer getCellRenderer(int row, int column) {
     			return new ModifiedCellRenderer();
     		}
     	};
