@@ -7,13 +7,13 @@ import java.util.ArrayList;
  * @version 2018-03-09
  */
 public class DBHelper{
-    static String treiber = "com.mysql.jdbc.Driver";    
-    static String protokoll = "jdbc:mysql://win2k12r2-svr-1.informatik.kls-berlin.de/";
-    static String datenbank = "schuldatenbank";
+    String treiber = "com.mysql.jdbc.Driver";    
+    String protokoll = "jdbc:mysql://win2k12r2-svr-1.informatik.kls-berlin.de/";
+    String datenbank = "schuldatenbank";
     String user = "admin";
     String kennwort = "aschurov";
-	static Connection conn;
-    static Statement st;
+	Connection conn;
+    Statement st;
     ResultSet rset;
     
     /**
@@ -58,12 +58,12 @@ public class DBHelper{
     }
     
     //Eine unterstützende Methode, die die Verbindung zur oben angegebenen Datenbank herstellt    
-    private static void openVerbindung() {
+    private  void openVerbindung() {
         try {
             // Passenden Treiber laden
             Class.forName(treiber);
             // Verbindung zur DB erstellen
-            conn = DriverManager.getConnection (protokoll+datenbank);
+            conn = DriverManager.getConnection (protokoll+datenbank, user, kennwort);
             ausgeben("Verbindung zur Datenbank steht.");
             // Erzeugen eines Statements durch das Verbindungs-Objekt
             st = conn.createStatement(); 
@@ -89,9 +89,8 @@ public class DBHelper{
     
     
     //@param s Der auszugebende String.
-    private static void ausgeben(String s) {
+    private void ausgeben(String s) {
         System.out.println(s);
     }
     
-    static{openVerbindung();}
 }
