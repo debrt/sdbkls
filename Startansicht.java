@@ -143,6 +143,7 @@ public class Startansicht {
         //tab1W.add(lb);
 	}
 	public static void search() {
+		MainTable.refreshTable();
     	String searchText = suche.getText();
     	ArrayList<String> results = new ArrayList<String>();
     	ArrayList<Integer> resultColumns = new ArrayList<Integer>();
