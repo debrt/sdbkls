@@ -25,9 +25,8 @@ public class MainTable {
 		//table.getColumnModel().addColumn(c);
 		
 		//model = new DefaultTableModel(attribute, 0 );
-		//test
 		
-		for(int i = 0; i < 50; i++){
+		for(int i = 0; i < 12; i++){
 			model.addRow(new String[]{"Q4", "Mustermann", "Max", "20.01.1999"});
 			model.addRow(new String[]{"10A", "Beispiel","Bernd","01.01.2000"});
 		}
