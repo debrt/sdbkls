@@ -21,7 +21,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 public class Startansicht {
 	
 	static JTable table;
@@ -63,11 +62,7 @@ public class Startansicht {
 	
 	static void center(){
 		
-    	table = new JTable(MainTable.getTable()) {
-    		 public TableCellRenderer getCellRenderer(int row, int column) {
-    		        return new ModifiedCellRenderer();
-    		    }
-    	};
+    	table = new JTable(MainTable.getTable());
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
@@ -112,7 +107,7 @@ public class Startansicht {
         tab1S.setBackground(new Color(1,68,131));
 	}
 	static void west(JFrame frame){
-        add = new JButton("Hinzufï¿½gen");
+        add = new JButton("Hinzufügen");
         add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddWindowListener listener = new AddWindowListener() {
@@ -166,8 +161,7 @@ public class Startansicht {
     	}
     	//lb.setText(results.toString());
     	for (int i = 0; i < results.size(); i++) {
-    		table.getModel().setValueAt(new HighlightedString(results.get(i)),
-    				resultRows.get(i), resultColumns.get(i));
+    		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
     	}
     	if (cbResultsViewToggle.isSelected()) {
     		for(int i=table.getRowCount()-1; i >= 0; i--) {
