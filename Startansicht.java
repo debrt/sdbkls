@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 public class Startansicht {
 	
 	static JTable table;
@@ -57,8 +58,11 @@ public class Startansicht {
 	
 	static void center(){
 		
-    	table = new JTable(MainTable.getTable());
-    	table.setDefaultRenderer(HighlightedString.class, new ModifiedCellRenderer());
+    	table = new JTable(MainTable.getTable()) {
+    		 public TableCellRenderer getCellRenderer(int row, int column) {
+    		        return new ModifiedCellRenderer();
+    		    }
+    	};
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
