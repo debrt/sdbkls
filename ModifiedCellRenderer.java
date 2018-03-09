@@ -10,7 +10,8 @@ public class ModifiedCellRenderer extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable arg0, Object arg1,
 			boolean arg2, boolean arg3, int arg4, int arg5) {
 		Component lbl = super.getTableCellRendererComponent(
-				arg0, arg1, arg2, arg3, arg4, arg5);		
+				arg0, arg1, arg2, arg3, arg4, arg5);
+		
 		lbl.setBackground(Color.yellow);
 		
 		return lbl;
