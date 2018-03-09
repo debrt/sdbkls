@@ -43,9 +43,14 @@ public class Suchkonfiguration{
     	
 		JPanel tabAnsichten = new JPanel();
 		tabAnsichten.setBackground(new Color(1,68,131));
-		JRadioButton ansichtAuswahl = new JRadioButton("Klassenliste");
-		tabAnsichten.add(ansichtAuswahl);
+		JRadioButton ansichtSchülerdaten = new JRadioButton("Allgemeine Schülerdaten");
+		setup(ansichtSchülerdaten);
+		tabAnsichten.add(ansichtSchülerdaten);
+		JRadioButton ansichtErziehungsberechtigte = new JRadioButton("Daten zu Erziehungsberechtigten");
+		setup(ansichtErziehungsberechtigte);
+		tabAnsichten.add(ansichtErziehungsberechtigte);
 		tab1C.add(tabAnsichten);
+		
 		try {
 			for(int i=0; i < Startansicht.getTable().getColumnCount(); i++) {
 				suchkriterien.add(Startansicht.getTable().getColumnName(i));
@@ -90,6 +95,9 @@ public class Suchkonfiguration{
         
     	tab1E.add(filtern);
 	}
-
+	static void setup(JRadioButton but){
+		but.setBackground(new Color(1,68,131));
+		but.setForeground(Color.WHITE);
+	}
     
 }
