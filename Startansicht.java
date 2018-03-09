@@ -156,7 +156,8 @@ public class Startansicht {
     	}
     	//lb.setText(results.toString());
     	for (int i = 0; i < results.size(); i++) {
-    		table.getModel().setValueAt("*" + results.get(i) + "*", resultRows.get(i), resultColumns.get(i));
+    		table.getModel().setValueAt(new HighlightedString(results.get(i)),
+    				resultRows.get(i), resultColumns.get(i));
     	}
     	if (cbResultsViewToggle.isSelected()) {
     		for(int i=table.getRowCount()-1; i >= 0; i--) {
