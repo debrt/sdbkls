@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 public class Startansicht {
 	
 	static JTable table;
@@ -62,7 +63,11 @@ public class Startansicht {
 	
 	static void center(){
 		
-    	table = new JTable(MainTable.getTable());
+    	table = new JTable(MainTable.getTable()) {
+    		public TableCellRenderer geCellRenderer(int row, int column) {
+    			return new ModifiedCellRenderer();
+    		}
+    	};
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
@@ -107,7 +112,7 @@ public class Startansicht {
         tab1S.setBackground(new Color(1,68,131));
 	}
 	static void west(JFrame frame){
-        add = new JButton("Hinzufügen");
+        add = new JButton("Hinzufï¿½gen");
         add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddWindowListener listener = new AddWindowListener() {
@@ -197,7 +202,7 @@ public class Startansicht {
 	}
 	private static JLabel getTitelLabel(){
 		JLabel titelLabel = new JLabel("<html><body>"
-				+ "KöNIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
+				+ "Kï¿½NIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
 				+ "</html></body>");
 		titelLabel.setForeground(Color.WHITE);
 		return titelLabel;
