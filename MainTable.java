@@ -16,15 +16,8 @@ public class MainTable {
 		for(int i = 0; i < model.getRowCount(); i++){
 			model.removeRow(i);
 		}
-		JTable table = Startansicht.getTable();
-		for(int i = 0; i < model.getColumnCount(); i++){
-			//table.getColumnModel().removeColumn(table.getColumnModel().getColumn(i));
-		}
-		TableColumn c = new TableColumn();
-		c.setHeaderValue("Klasse");
-		//table.getColumnModel().addColumn(c);
 		
-		//model = new DefaultTableModel(attribute, 0 );
+		model = new DefaultTableModel(attribute, 0);
 		
 		for(int i = 0; i < 12; i++){
 			model.addRow(new String[]{"Q4", "Mustermann", "Max", "20.01.1999"});

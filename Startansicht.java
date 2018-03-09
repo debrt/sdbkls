@@ -68,6 +68,7 @@ public class Startansicht {
     			return new ModifiedCellRenderer();
     		}
     	};
+    	//table.setColumnModel(new ModifiedColumnModel());
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
@@ -180,6 +181,12 @@ public class Startansicht {
     	
     	}
     }
+	
+	
+	
+	
+	
+	
 	
 	private static void addPrintButton(){
 		print = new JButton("Drucken");
