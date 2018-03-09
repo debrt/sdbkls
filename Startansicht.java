@@ -58,6 +58,7 @@ public class Startansicht {
 	static void center(){
 		
     	table = new JTable(MainTable.getTable());
+    	table.setDefaultRenderer(HighlightedString.class, new ModifiedCellRenderer());
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
@@ -101,7 +102,7 @@ public class Startansicht {
         tab1S.setBackground(new Color(1,68,131));
 	}
 	static void west(JFrame frame){
-        add = new JButton("Hinzufügen");
+        add = new JButton("Hinzufï¿½gen");
         add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddWindowListener listener = new AddWindowListener() {
