@@ -5,14 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterJob;
 import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-<<<<<<< HEAD
 import javax.swing.JCheckBox;
-=======
 import javax.swing.JComboBox;
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-//test
 public class Startansicht {
 	
 	static JTable table;
@@ -91,14 +86,11 @@ public class Startansicht {
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
         suche.setColumns(20);
-<<<<<<< HEAD
         tab1NR.add(cbResultsViewToggle);
-=======
         JLabel klassenAuswahlLabel = new JLabel(" in Klasse bzw. Stufe");
         klassenAuswahlLabel.setForeground(Color.WHITE);
         String[] klassen = {"*ALLE*","7","8","9","10","Q1","Q2","Q3","Q4"};
         JComboBox klasseAuswahl = new JComboBox(klassen);
->>>>>>> branch 'master' of https://github.com/debrt/sdbkls
         tab1NR.add(suche);
         tab1NR.add(search);
         tab1NR.add(klassenAuswahlLabel);
