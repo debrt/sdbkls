@@ -1,27 +1,20 @@
-import java.awt.Color;
-import java.sql.ResultSet;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class MainTable {
 	
-	public static void main(String[] args){
-		MainTable testTable = new MainTable();
+	public static DefaultTableModel getTable(){
+		String[] attribute = {"Klasse", "Name", "Vorname", "Geburtsdatum"};
+		DefaultTableModel model = new DefaultTableModel(attribute, 0 );
+		for(int i = 0; i < 50; i++){
+			model.addRow(getRow());
+			model.addRow(new String[]{"10A", "Bernd","Beispiel","01.01.2000"});
+		}
+		return model;
 	}
 	
-	
-	public MainTable(){
-		
-		try{
-		ResultSet rset = DBHelper.st.executeQuery(
-				"SELECT * FROM schueler;");
-		
-		while (rset.next()) {
-			String klasse = rset.getString(1);
-			String name = rset.getString(2);
-			String vorname = rset.getString(3);
-			System.out.println(klasse + "; " + name + "; " + vorname);
-		}
-		}catch (Exception xc) {
-			xc.printStackTrace();
-		}
+	static String[] getRow(){
+		String[] newRow = {"Q4", "Mustermann", "Max", "20.01.1999"};
+		return newRow;
 	}
 }

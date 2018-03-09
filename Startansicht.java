@@ -56,13 +56,8 @@ public class Startansicht {
 	}
 	
 	static void center(){
-		String[] attribute = {"Klasse", "Name", "Vorname", "Geburtsdatum"};
-		DefaultTableModel model = new DefaultTableModel(attribute, 0 );
-		for(int i = 0; i < 50; i++){
-			model.addRow(getRow());
-			model.addRow(new String[]{"10A", "Bernd","Beispiel","01.01.2000"});
-		}
-    	table = new JTable(model);
+		
+    	table = new JTable(MainTable.getTable());
     	tab1C = new JPanel();
         tab1C.setBackground(new Color(1,68,131));
         tab1C.setLayout(new BorderLayout());
@@ -185,8 +180,5 @@ public class Startansicht {
 		print.addActionListener(printAL);
 	}
 	
-	static String[] getRow(){
-		String[] newRow = {"Q4", "Mustermann", "Max", "20.01.1999"};
-		return newRow;
-	}
+	
 }
