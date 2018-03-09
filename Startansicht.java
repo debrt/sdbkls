@@ -3,9 +3,14 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -66,7 +71,6 @@ public class Startansicht {
 	static void north(){
 		tab1N = new JPanel();
         tab1N.setBackground(new Color(1,68,131));
-        //tab1N.setLayout(new BorderLayout());
         JPanel tab1NR = new JPanel();
         tab1NR.setLayout(new FlowLayout(FlowLayout.RIGHT));
         tab1NR.setBackground(new Color(1,68,131));
@@ -81,15 +85,17 @@ public class Startansicht {
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
         suche.setColumns(20);
-        tab1NR.add(cbResultsViewToggle);
+        tab1NR.add(getTitelLabel());
+        tab1NR.add(getImg());
         JLabel klassenAuswahlLabel = new JLabel(" in Klasse bzw. Stufe");
         klassenAuswahlLabel.setForeground(Color.WHITE);
         String[] klassen = {"*ALLE*","7","8","9","10","Q1","Q2","Q3","Q4"};
         JComboBox klasseAuswahl = new JComboBox(klassen);
         tab1NR.add(suche);
-        tab1NR.add(search);
         tab1NR.add(klassenAuswahlLabel);
         tab1NR.add(klasseAuswahl);
+        tab1NR.add(search);
+        tab1NR.add(cbResultsViewToggle);
         tab1N.add(tab1NR);
 	}
 	static void east(){
@@ -137,7 +143,6 @@ public class Startansicht {
         //tab1W.add(lb);
 	}
 	public static void search() {
-		MainTable.refreshTable();
     	String searchText = suche.getText();
     	ArrayList<String> results = new ArrayList<String>();
     	ArrayList<Integer> resultColumns = new ArrayList<Integer>();
@@ -181,5 +186,20 @@ public class Startansicht {
 		print.addActionListener(printAL);
 	}
 	
+	private static JLabel getImg(){
+		JLabel klsLogoLabel = new JLabel();
+		try{
+			BufferedImage klsLogo = ImageIO.read(new File("kls_logo.png"));
+			klsLogoLabel = new JLabel(new ImageIcon(klsLogo));
+		} catch(Exception e) {System.out.println("Fehler beim Laden des Bildes: " + e);}
+		return klsLogoLabel;
+	}
+	private static JLabel getTitelLabel(){
+		JLabel titelLabel = new JLabel("<html><body>"
+				+ "KöNIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
+				+ "</html></body>");
+		titelLabel.setForeground(Color.WHITE);
+		return titelLabel;
+	}
 	
 }
