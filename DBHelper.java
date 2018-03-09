@@ -4,15 +4,58 @@ import java.util.ArrayList;
  * Diese Klasse stellt die Möglichkeit bereit, Anfragen an die Datenbank zu stellen. 
  * @author Reher
  * Bearbeitet durch Vincent W. 
- * @version Vorlage 1.0
+ * @version 2018-03-09
  */
 public class DBHelper{
-    static String treiber = "org.sqlite.JDBC";    
-    static String protokoll = "jdbc:sqlite:";
-    static String datenbank = "sdbklsPrototyp.db";
+    static String treiber = "com.mysql.jdbc.Driver";    
+    static String protokoll = "jdbc:mysql://win2k12r2-svr-1.informatik.kls-berlin.de/";
+    static String datenbank = "schuldatenbank";
+    String user = "admin";
+    String kennwort = "aschurov";
 	static Connection conn;
     static Statement st;
     ResultSet rset;
+    
+    /**
+     * Eine Beispielabfrage an die Datenbank, die einen Teil der Lehrer-Tabelle abfragt
+     */
+    public ArrayList<Object[]> getLehrer() {
+        String query = "SELECT Kürzel, Name, Vorname FROM lehrer;";
+        ArrayList<Object[]> rows = new ArrayList<>();
+        
+        openVerbindung();
+        try {           
+            rset = st.executeQuery(query);
+            
+            while (rset.next()){
+                rows.add(new String[] {
+                    rset.getString(1),
+                    rset.getString(2),
+                    rset.getString(3)
+                });
+            }
+        } catch (Exception e) {
+            ausgeben("Fehler: "+e+"\n trat bei diesem Query auf: \n"+query);
+        }    
+        closeVerbindung();
+        
+        return rows;
+    }
+    
+    /**
+     * Eine beispielhafte Eingabe des oben abgerufenen Teils der Lehrer-Tabelle
+     */
+    public void setLehrer(String kürzel, String name, String vorname) {
+        String query = "INSERT INTO lehrer (Kürzel, Name, Vorname) VALUES ('"+kürzel+"', '"+name+"', '"+vorname+"');";
+    
+        openVerbindung();
+        try { 
+            st.execute(query);
+        } catch (Exception e) {
+            ausgeben("Fehler: "+e+"\n trat bei diesem Query auf: \n"+query);
+        }    
+        closeVerbindung(); 
+    }
     
     //Eine unterstützende Methode, die die Verbindung zur oben angegebenen Datenbank herstellt    
     private static void openVerbindung() {
