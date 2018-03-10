@@ -1,5 +1,7 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,8 +9,9 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTable;
 
 public class Suchkonfiguration{
@@ -21,36 +24,41 @@ public class Suchkonfiguration{
     static JPanel tab1C;
 	static ArrayList<String> suchkriterien = new ArrayList<String>();
 	static ArrayList<JCheckBox> checkboxen = new ArrayList<JCheckBox>();
+	static ArrayList<JPanel> panels = new ArrayList<JPanel>();
     static JTable table;
     
     public static JPanel getPanel(){
     	auswahl();
     	titelZeile();
     	applyButton();
+    	presets();
     	konfiguration = new JPanel();
-    	konfiguration.setLayout(new GridLayout(5, 2));
+    	konfiguration.setLayout(new BorderLayout());
 		konfiguration.setBackground(new Color(1, 68, 131));
-    	konfiguration.add(tab1N);
-    	konfiguration.add(tab1C);
-    	konfiguration.add(tab1E);
+    	konfiguration.add(tab1N, BorderLayout.NORTH);
+    	konfiguration.add(tab1C, BorderLayout.CENTER);
+    	konfiguration.add(tab1W, BorderLayout.WEST);
+    	konfiguration.add(tab1E, BorderLayout.EAST);
     	return(konfiguration);
     }
 
+    static void presets(){
+    	tab1W = new JPanel();
+    	tab1W.setLayout(new BoxLayout(tab1W, BoxLayout.Y_AXIS));
+		tab1W.setBackground(new Color(1,68,131));
+		JLabel presetLabel = new JLabel("Datensatz Preset: ");
+        presetLabel.setForeground(Color.WHITE);
+        String[] presets = {"Schüler*innen", "+Erziehungsberechtigte"};
+        JComboBox<String> presetAuswahl= new JComboBox<String>(presets);
+        presetAuswahl.setMaximumSize(new Dimension(150,28));
+        tab1W.add(presetLabel);
+		tab1W.add(presetAuswahl);
+    }
+    
 	static void auswahl(){
 		tab1C = new JPanel();
 		tab1C.setBackground(new Color(1,68,131));
 		tab1C.setLayout(new BoxLayout(tab1C, BoxLayout.Y_AXIS));
-    	
-		JPanel tabAnsichten = new JPanel();
-		tabAnsichten.setBackground(new Color(1,68,131));
-		JRadioButton ansichtSchülerdaten = new JRadioButton("Allgemeine Schülerdaten");
-		setup(ansichtSchülerdaten);
-		tabAnsichten.add(ansichtSchülerdaten);
-		JRadioButton ansichtErziehungsberechtigte = new JRadioButton("Daten zu Erziehungsberechtigten");
-		setup(ansichtErziehungsberechtigte);
-		tabAnsichten.add(ansichtErziehungsberechtigte);
-		tab1C.add(tabAnsichten);
-		
 		try {
 			for(int i=0; i < Startansicht.getTable().getColumnCount(); i++) {
 				suchkriterien.add(Startansicht.getTable().getColumnName(i));
@@ -59,11 +67,15 @@ public class Suchkonfiguration{
 			e.printStackTrace();
 		}
     	for(int i=0; i<suchkriterien.size(); i++) {
+    		JPanel pa = new JPanel();
+    		pa.setBackground(new Color(1,68,131));
+    		pa.setLayout(new FlowLayout(FlowLayout.CENTER));
     		JCheckBox cb = new JCheckBox(suchkriterien.get(i));
     		cb.setBackground(new Color(1,68,131));
     		cb.setForeground(Color.WHITE);
     		cb.setSelected(true);
-    		tab1C.add(cb);
+    		pa.add(cb);
+    		tab1C.add(pa);
     		checkboxen.add(cb);
     	}
 	}
@@ -77,7 +89,6 @@ public class Suchkonfiguration{
 		tab1E = new JPanel();
         tab1E.setBackground(new Color(1,68,131));
         JButton filtern = new JButton("Filter übernehmen");
-        
         filtern.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -90,14 +101,7 @@ public class Suchkonfiguration{
         			}
         		}
         	}
-        	
         });
-        
     	tab1E.add(filtern);
-	}
-	static void setup(JRadioButton but){
-		but.setBackground(new Color(1,68,131));
-		but.setForeground(Color.WHITE);
-	}
-    
+	}    
 }

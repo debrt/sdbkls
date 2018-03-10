@@ -90,6 +90,8 @@ public class Startansicht {
         suche = new JTextField("Suchbegriff...");
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
+        cbResultsViewToggle.setBackground(new Color(1,68,131));
+        cbResultsViewToggle.setForeground(Color.WHITE);
         suche.setColumns(20);
         tab1NR.add(getTitelLabel());
         tab1NR.add(getImg());
