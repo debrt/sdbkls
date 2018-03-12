@@ -115,17 +115,21 @@ public class Suchkonfiguration{
         //Setup & HInzufügen der Funktionalität dieses Knopfes
         filtern.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//Für jede Checkbox wird nachfolgender Code einmal ausgeführt
-        		for (int i=0; i < checkboxen.size(); i++) {
-        			//Ist eine Checkbox deaktiviert wird folgender Code ausgeführt
-        			if(!checkboxen.get(i).isSelected()) {
-        				//Das Attribut bzw. die Spalte an Stelle i wird aus der Tabelle entfernt
-        				Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
-        			}
-        		}
+        		applyAttributeSelection();
         	}
         });
         //Hinzufügen des Knopfes zum rechtsseitigen Panel 
     	tab1E.add(filtern);
 	}    
+	
+	public static void applyAttributeSelection(){
+		//Für jede Checkbox wird nachfolgender Code einmal ausgeführt
+		for (int i=0; i < checkboxen.size(); i++) {
+			//Ist eine Checkbox deaktiviert wird folgender Code ausgeführt
+			if(!checkboxen.get(i).isSelected()) {
+				//Das Attribut bzw. die Spalte an Stelle i wird aus der Tabelle entfernt
+				Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
+			}
+		}
+	}
 }

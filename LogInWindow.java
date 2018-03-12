@@ -40,12 +40,7 @@ public class LogInWindow {
 	static KeyListener enterKL;
 	static ActionListener loginAL;
 	static ActionListener helpAL;
-	static char[] vincentNutzername = {'v','i','n','c','e','n','t'};
 	static char[] dennisNutzername = {'d','e','n','n','i','s'};
-	static char[] jonathanNutzername = {'j','o','n','a','t','h','a','n'};
-	static char[] julianNutzername = {'j','u','l','i','a','n'};
-	static char[] benediktNutzername = {'b','e','n','e','d','i','k','t'};
-	static char[] sidneyNutzername = {'s','i','d','n','e','y'};
 	static char[] theesfeldNutzername = {'t','h','e','e','s','f','e','l','d'};
 	static char[] defNutzername = {};
 	static String aktuellerBenutzer;
@@ -179,6 +174,8 @@ public class LogInWindow {
 			        new MainWindow();
 			        //Verstecken des Login-Dialogs
 			        loginFenster.setVisible(false);
+			        //Laden der für den jeweiligen Benutzer voreingestellten Attribute
+			        loadPersonalPreset(benutzerInput);
 			    } else {
 			        //Falls Passwort fehlerhaft: Mitteilungs-Box mit Benachrichtigung über fehlerhafte Eingabe
 			    	JOptionPane.showMessageDialog(loginFenster,
@@ -215,28 +212,8 @@ public class LogInWindow {
 	private static boolean loginCheck(char[] pwInput, char[] benutzerInput) {
 		//Testen, ob der Benutzername gefunden wird.
 		//Falls ja: Durchführen der Passwort-Überprüfung mit dem dem Nutzer zugehörigen Passwort
-		if (Arrays.equals(benutzerInput, vincentNutzername)){
-			char[] pwEcht = {'p','i','n','k'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
 		if (Arrays.equals(benutzerInput, dennisNutzername)){
 			char[] pwEcht = {'g','e','l','b'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, julianNutzername)){
-			char[] pwEcht = {'p','i','n','k'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, jonathanNutzername)){
-			char[] pwEcht = {'f','l','i','e','d','e','r'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		} 
-		if (Arrays.equals(benutzerInput, benediktNutzername)){
-			char[] pwEcht = {'r','o','s','a'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, sidneyNutzername)){
-			char[] pwEcht = {'m','a','g','e','n','t','a'};
 			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
 		}
 		if (Arrays.equals(benutzerInput, defNutzername)){
@@ -259,5 +236,18 @@ public class LogInWindow {
 	    //Ausgabe des Aktuellen Benutzers im Terminal (zu Test-Zwecken)
 		System.out.println(new String(benutzerInput));
 	    return pwStimmt;
+	}
+	
+	public static void loadPersonalPreset(char[] benutzerInput){
+		if (Arrays.equals(benutzerInput, dennisNutzername)){
+			applyPreset(3);
+			applyPreset(4);
+			applyPreset(5);
+		} 
+	}
+	
+	public static void applyPreset(int i){
+		Suchkonfiguration.checkboxen.get(i).setSelected(false);
+		Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
 	}
 }
