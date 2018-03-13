@@ -116,6 +116,16 @@ public class Startansicht {
         cbResultsViewToggle.setBackground(new Color(1,68,131));
         cbResultsViewToggle.setForeground(Color.WHITE);
         suche.setColumns(20);
+        
+        JButton clearSuche = new JButton("X");
+        clearSuche.setBackground(Color.red);
+        clearSuche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				suche.setText("");
+				suche.requestFocus();
+			}
+		});        
+        
         tab1NR.add(getTitelLabel());
         tab1NR.add(getImg());
         JLabel klassenAuswahlLabel = new JLabel(" in Klasse bzw. Stufe");
@@ -123,6 +133,7 @@ public class Startansicht {
         String[] klassen = {"*ALLE*","7","8","9","10","Q1","Q2","Q3","Q4"};
         JComboBox klasseAuswahl = new JComboBox(klassen);
         tab1NR.add(suche);
+        tab1NR.add(clearSuche);
         tab1NR.add(klassenAuswahlLabel);
         tab1NR.add(klasseAuswahl);
         tab1NR.add(search);
