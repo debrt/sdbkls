@@ -100,8 +100,7 @@ public class Startansicht {
 			public void mouseExited(MouseEvent e) { }
 			public void mouseEntered(MouseEvent e) { }
 			public void mouseClicked(MouseEvent e) {
-				if (searchTextAreaHasBeenUsed &&
-						e.getButton() == MouseEvent.BUTTON1) {
+				if (searchTextAreaHasBeenUsed) {
 					return;
 				}
 				
@@ -109,7 +108,6 @@ public class Startansicht {
 				
 				suche.setForeground(Color.BLACK);
 				suche.setText("");
-				suche.requestFocus();
 			}
 		});
         
