@@ -126,6 +126,8 @@ public class Suchkonfiguration{
 		MainTable.refreshTable();
 		Startansicht.getTable().setModel(MainTable.getTable());
 		
+		int columnIndex = 0;
+		
 		//Für jede Checkbox wird nachfolgender Code einmal ausgeführt
 		for (int i=0; i < checkboxen.size(); i++) {
 			//Ist eine Checkbox deaktiviert wird folgender Code ausgeführt
@@ -133,8 +135,9 @@ public class Suchkonfiguration{
 				//Das Attribut bzw. die Spalte an Stelle i wird
 				// aus der Tabelle entfernt
 				Startansicht.getTable().removeColumn(
-						Startansicht.getTable().getColumnModel().getColumn(i));
-			}
+						Startansicht.getTable().getColumnModel().getColumn(
+								columnIndex));
+			} else columnIndex++;
 		}
 	}
 }
