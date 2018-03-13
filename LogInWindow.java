@@ -286,9 +286,13 @@ public class LogInWindow {
 	
 	public static void loadPersonalPreset(char[] benutzerInput){
 		if (Arrays.equals(benutzerInput, dennisNutzername)){
-			applyPreset(3);
-			applyPreset(4);
+			//i (=Spaltennr.) muss in absteigender Reihenfolge entfernt werden,
+			//da sich ansonsten die Spalten verschieben
+			applyPreset(8);
+			applyPreset(7);
+			applyPreset(6);
 			applyPreset(5);
+			applyPreset(4);
 		} 
 	}
 	
