@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 
 public class LogInWindow {
 	
+	//Initialisierung der Variablen
 	static JFrame loginFenster;
 	static JPanel mainPanel;
 	static JPanel titelPanel;
@@ -39,12 +40,7 @@ public class LogInWindow {
 	static KeyListener enterKL;
 	static ActionListener loginAL;
 	static ActionListener helpAL;
-	static char[] vincentNutzername = {'v','i','n','c','e','n','t'};
 	static char[] dennisNutzername = {'d','e','n','n','i','s'};
-	static char[] jonathanNutzername = {'j','o','n','a','t','h','a','n'};
-	static char[] julianNutzername = {'j','u','l','i','a','n'};
-	static char[] benediktNutzername = {'b','e','n','e','d','i','k','t'};
-	static char[] sidneyNutzername = {'s','i','d','n','e','y'};
 	static char[] theesfeldNutzername = {'t','h','e','e','s','f','e','l','d'};
 	static char[] defNutzername = {};
 	static String aktuellerBenutzer;
@@ -55,10 +51,7 @@ public class LogInWindow {
 		new LogInWindow();
 	}
 	
-	public LogInWindow(){        
-			
-		//MainTable testDataOutput = new MainTable();
-		
+	public LogInWindow(){        	
 		addFenster();
 		addMainPanel();
 		addTitelPanel();
@@ -72,6 +65,8 @@ public class LogInWindow {
 		addLoginButton();
 		addHelpButton();
 			
+		//Hinzufügen der Komponenten zum jeweiligen Panel bzw. zum Fenster
+		
 		loginFenster.add(mainPanel);
 		
 		mainPanel.add(titelPanel);
@@ -92,53 +87,59 @@ public class LogInWindow {
 	}
 	
 	private static void addFenster(){
+		//Setup des Fensters
 		loginFenster = new JFrame("SDBKLS | LogIn");
-		//loginFenster.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		loginFenster.setSize(300,180);
 		loginFenster.setLocationRelativeTo(null);
 		loginFenster.setDefaultCloseOperation(loginFenster.EXIT_ON_CLOSE);
 	}
 	
 	private static void addMainPanel(){
+		//setup des Haupt-Panels
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(new Color(1, 68, 131));
 	}
 	
 	private static void addTitelPanel(){
+		//Setup des Panels, in dem Überschrift und Logo liegt
 		titelPanel = new JPanel();
 		titelPanel.setBackground(new Color(1, 68, 131));
 	}
 	
 	private static void addBenutzerPanel(){
+		//Setup des Panels, in dem Benutzereingabefeld und Einloggen-Button liegt
 		benutzerPanel = new JPanel();
 		benutzerPanel.setBackground(new Color(1,68,131));
 	}
 	
 	private static void addPwPanel(){
+		//Setup des Panels, in dem PassworteingabeFeld und Support-Button liegt
 		pwPanel = new JPanel();
 		pwPanel.setBackground(new Color(1,68,131));
 	}
 	
 	private static void addTitelLabel(){
+		//Setup der Überschriftenzeile(n)
 		titelLabel = new JLabel("<html><body>"
-				+ "KöNIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
+				+ "KÖNIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
 				+ "</html></body>");
 		titelLabel.setForeground(Color.WHITE);
 	}
 	
 	private void addImg(){
+		//Setup des KLS-Logo-Bildes
 		klsLogoLabel = new JLabel();
 		try{
+			//Laden der Bild-Datei 
 			BufferedImage klsLogo = ImageIO.read(new File("kls_logo.png"));
+			//Hinzufügen des Bildes zu einem Panel
 			klsLogoLabel = new JLabel(new ImageIcon(klsLogo));
 		} catch(Exception e) {System.out.println("Fehler beim Laden des Bildes: " + e);}
-		if (klsLogoLabel == null){
-			klsLogoLabel = new JLabel("KLS-Logo");
-		}
 	}
 	
 	private static void addFieldBeschriftungen(){
+		//Setup der Beschriftungen der Eingabefelder
 		benutzerBeschriftung = new JLabel("<html><body><i>BENUTZER       </i></body></html>");
 		benutzerBeschriftung.setForeground(Color.ORANGE);
 		pwBeschriftung = new JLabel("<html><body><i>PASSWORT</i></body></html>");
@@ -146,73 +147,73 @@ public class LogInWindow {
 	}
 	
 	private static void addBenutzerField(){
+		//Setup des Benutzereingabefelds
 		benutzerField = new JTextField(9);
 		benutzerField.setToolTipText("NUTZER");
 	}
 	
 	private static void addPwField(){
-	pwField = new JPasswordField(9);
-	pwField.setToolTipText("PASSWORT");
-}
+		//Setup des Passworteingabefelds
+		pwField = new JPasswordField(9);
+		pwField.setToolTipText("PASSWORT");
+	}
 	
 	private static void addLoginButton(){
+		//Setup des Einloggen-Buttons
 		loginButton = new JButton("Einloggen");
-		//loginButton.setPreferredSize(new Dimension(90,28));
+		//Setup der Funktionalität des Einloggen-Buttons
 		loginAL = new ActionListener(){
 			public void actionPerformed(ActionEvent loginButtonClicked){
-			        char[] pwInput = pwField.getPassword();
-			        char[] benutzerInput = benutzerField.getText().toCharArray();
-			        if (loginCheck(pwInput, benutzerInput)){
-			            new MainWindow();
-			            loginFenster.setVisible(false);
-			        } else {
-			            JOptionPane.showMessageDialog(loginFenster,
-			                "<html><body>Passwort oder Benutzername fehlerhaft.<br>"
-			                + "Versuchen Sie es erneut.</body></html>", "Meldung", JOptionPane.ERROR_MESSAGE);
-			            pwField.setText("");
-			        }
-			        Arrays.fill(pwInput, '0');
+				//Auslesen des Passworts
+			    char[] pwInput = pwField.getPassword();
+			    //Auslesen des Nutzers
+			    char[] benutzerInput = benutzerField.getText().toCharArray();
+			    //Durchführen der Prüfung, ob Passwort zum Nutzernamen passt 
+			    if (loginCheck(pwInput, benutzerInput)){
+			    	//Öffnen des Hauptfensters
+			        new MainWindow();
+			        //Verstecken des Login-Dialogs
+			        loginFenster.setVisible(false);
+			        //Laden der für den jeweiligen Benutzer voreingestellten Attribute
+			        loadPersonalPreset(benutzerInput);
+			    } else {
+			        //Falls Passwort fehlerhaft: Mitteilungs-Box mit Benachrichtigung über fehlerhafte Eingabe
+			    	JOptionPane.showMessageDialog(loginFenster,
+			            "<html><body>Passwort oder Benutzername fehlerhaft.<br>"
+			            + "Versuchen Sie es erneut.</body></html>", "Meldung", JOptionPane.ERROR_MESSAGE);
+			        //Löschung des eingegebenen Passworts, um einen erneuten Versuch zu erleichtern
+			    	pwField.setText("");
+			    }
+			    //Nullsetzen der Variable, in der das Passwort gespeichert wurde (Aus Sicherheitsgründen)
+			    Arrays.fill(pwInput, '0');
 			    }
 		};
+		//Hinzufügen der Funktionalität zum Einloggen-Button
 		loginButton.addActionListener(loginAL);
 	}
 	
 	private static void addHelpButton(){
+		//Setup des Sopprt-Buttons
 		helpButton = new JButton("  Support  ");
-		//helpButton.setPreferredSize(new Dimension(90,28));
+		//Setup der Funktionalität des Support-Buttons
 		helpAL = new ActionListener(){
 			public void actionPerformed(ActionEvent helpButtonClicked){
+				//Beim Klick wird eine Mitteilung aufgerufen,
+				//die Kontaktinformationen für Support-Fälle mitteilt
 				JOptionPane.showMessageDialog(loginFenster, "<html><body>"
 						+ "The cake is a lie.<br>IT-Administration: Durchwahl 132</body></html>",
 						"Support", JOptionPane.INFORMATION_MESSAGE);
 			}
 		};
+		//Hinzufügen der Funktionalität zum Support-Button
 		helpButton.addActionListener(helpAL);
 	}
 	
 	private static boolean loginCheck(char[] pwInput, char[] benutzerInput) {
-		if (Arrays.equals(benutzerInput, vincentNutzername)){
-			char[] pwEcht = {'p','i','n','k'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
+		//Testen, ob der Benutzername gefunden wird.
+		//Falls ja: Durchführen der Passwort-Überprüfung mit dem dem Nutzer zugehörigen Passwort
 		if (Arrays.equals(benutzerInput, dennisNutzername)){
 			char[] pwEcht = {'g','e','l','b'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, julianNutzername)){
-			char[] pwEcht = {'p','i','n','k'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, jonathanNutzername)){
-			char[] pwEcht = {'f','l','i','e','d','e','r'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		} 
-		if (Arrays.equals(benutzerInput, benediktNutzername)){
-			char[] pwEcht = {'r','o','s','a'};
-			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
-		}
-		if (Arrays.equals(benutzerInput, sidneyNutzername)){
-			char[] pwEcht = {'m','a','g','e','n','t','a'};
 			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
 		}
 		if (Arrays.equals(benutzerInput, defNutzername)){
@@ -223,13 +224,30 @@ public class LogInWindow {
 			char[] pwEcht = {'p','a','s','s','w','o','r','t'};
 			pwStimmt = hilfsCheck(pwInput, pwEcht, benutzerInput);
 		} 
+		//Boolean-Rückgabe (ja/nein), ob die Anmeldeinformationen korrekt sind 
 	    return pwStimmt;
 	}
 	
 	private static boolean hilfsCheck(char[] pwInput, char[] pwEcht, char[] benutzerInput){
+		//Überprüfung der Übereinstimmung der Charaktersets beider Passwärter (Eingabe u. Gespeichertes)
 		pwStimmt = Arrays.equals (pwInput, pwEcht);
+		//Nullsetzen der Variable, in der das Passwort gespeichert wurde (Aus Sicherheitsgründen)
 	    Arrays.fill(pwEcht,'0');
+	    //Ausgabe des Aktuellen Benutzers im Terminal (zu Test-Zwecken)
 		System.out.println(new String(benutzerInput));
 	    return pwStimmt;
+	}
+	
+	public static void loadPersonalPreset(char[] benutzerInput){
+		if (Arrays.equals(benutzerInput, dennisNutzername)){
+			applyPreset(3);
+			applyPreset(4);
+			applyPreset(5);
+		} 
+	}
+	
+	public static void applyPreset(int i){
+		Suchkonfiguration.checkboxen.get(i).setSelected(false);
+		Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
 	}
 }
