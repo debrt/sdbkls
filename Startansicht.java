@@ -93,7 +93,7 @@ public class Startansicht {
         });
         
         suche = new JTextField("Suchbegriff...");
-        suche.setForeground(Color.GRAY);
+        suche.setForeground(new Color(80, 80, 80));
         suche.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) { }
 			public void mousePressed(MouseEvent e) { }
