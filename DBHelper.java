@@ -45,8 +45,8 @@ public class DBHelper{
     /**
      * Eine beispielhafte Eingabe des oben abgerufenen Teils der Lehrer-Tabelle
      */
-    public void setLehrer(String kürzel, String name, String vorname) {
-        String query = "INSERT INTO lehrer (Kürzel, Name, Vorname) VALUES ('"+kürzel+"', '"+name+"', '"+vorname+"');";
+    public void setLehrer(String kuerzel, String name, String vorname) {
+        String query = "INSERT INTO lehrer (Kürzel, Name, Vorname) VALUES ('"+kuerzel+"', '"+name+"', '"+vorname+"');";
     
         openVerbindung();
         try { 
