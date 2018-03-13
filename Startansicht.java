@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
 import java.io.File;
@@ -43,6 +45,8 @@ public class Startansicht {
     public static JTable getTable() {
     	return table;
     }
+    
+    static boolean searchTextAreaHasBeenUsed = false;
     
     public static JPanel getPanel(JFrame frame){
 		JPanel panel = new JPanel();
@@ -87,7 +91,28 @@ public class Startansicht {
         	}
         	
         });
+        
         suche = new JTextField("Suchbegriff...");
+        suche.setForeground(Color.GRAY);
+        suche.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) { }
+			public void mousePressed(MouseEvent e) { }
+			public void mouseExited(MouseEvent e) { }
+			public void mouseEntered(MouseEvent e) { }
+			public void mouseClicked(MouseEvent e) {
+				if (searchTextAreaHasBeenUsed &&
+						e.getButton() == MouseEvent.BUTTON1) {
+					return;
+				}
+				
+				searchTextAreaHasBeenUsed = true;
+				
+				suche.setForeground(Color.BLACK);
+				suche.setText("");
+				suche.requestFocus();
+			}
+		});
+        
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
         cbResultsViewToggle.setBackground(new Color(1,68,131));
