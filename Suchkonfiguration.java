@@ -81,12 +81,15 @@ public class Suchkonfiguration{
         filtern.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
+        		MainTable.refreshTable();
+    			Startansicht.getTable().
+    				setModel(MainTable.getTable());
+        		
         		for (int i=0; i < checkboxen.size(); i++) {
         			if(!checkboxen.get(i).isSelected()) {
-        				Startansicht.getTable().removeColumn(Startansicht.getTable().getColumnModel().getColumn(i));
-        			}
-        			else {
-        				//Startansicht.getTable().addColumn(Startansicht.getTable().getColumnModel().getColumn(i));
+        				Startansicht.getTable().removeColumn(
+        						Startansicht.getTable().getColumnModel().
+        						getColumn(i));
         			}
         		}
         	}

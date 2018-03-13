@@ -159,7 +159,7 @@ public class Startansicht {
     		for (int j=0; j < table.getColumnCount(); j++)
     		{
     			String cell = (String) table.getModel().getValueAt(i,j);
-    			if (cell.contains(searchText)) {
+    			if (cell != null && cell.contains(searchText)) {
     				results.add(cell);
     				resultColumns.add(j);
     				resultRows.add(i);
