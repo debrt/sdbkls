@@ -1,9 +1,13 @@
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -99,6 +103,28 @@ public class LogInWindow {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(new Color(1, 68, 131));
+		
+		loginFenster.setFocusTraversalPolicy(new FocusTraversalPolicy() {
+			public Component getLastComponent(Container aContainer) {
+				return pwField;
+			}
+			
+			public Component getFirstComponent(Container aContainer) {
+				return benutzerField;
+			}
+			
+			public Component getDefaultComponent(Container aContainer) {
+				return benutzerField;
+			}
+			
+			public Component getComponentBefore(Container aContainer, Component aComponent) {
+				return aComponent == benutzerField ? pwField : benutzerField;
+			}
+			
+			public Component getComponentAfter(Container aContainer, Component aComponent) {
+				return aComponent == benutzerField ? pwField : benutzerField;
+			}
+		});
 	}
 	
 	private static void addTitelPanel(){
@@ -150,12 +176,32 @@ public class LogInWindow {
 		//Setup des Benutzereingabefelds
 		benutzerField = new JTextField(9);
 		benutzerField.setToolTipText("NUTZER");
+		
+		benutzerField.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) { }
+			public void keyReleased(KeyEvent e) { }
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					loginButton.doClick();
+				}
+			}
+		});
 	}
 	
 	private static void addPwField(){
 		//Setup des Passworteingabefelds
 		pwField = new JPasswordField(9);
 		pwField.setToolTipText("PASSWORT");
+		
+		pwField.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) { }
+			public void keyReleased(KeyEvent e) { }
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					loginButton.doClick();
+				}
+			}
+		});
 	}
 	
 	private static void addLoginButton(){
