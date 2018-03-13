@@ -186,6 +186,8 @@ public class Startansicht {
 	}
 	public static void search() {
 		MainTable.refreshTable();
+		table.setModel(MainTable.getTable());
+		
     	String searchText = suche.getText();
     	ArrayList<String> results = new ArrayList<String>();
     	ArrayList<Integer> resultColumns = new ArrayList<Integer>();
