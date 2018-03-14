@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -130,6 +132,15 @@ public class Startansicht {
 				suche.setText("");
 			}
 		});
+        suche.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) { }
+			public void keyReleased(KeyEvent e) { }
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					search();
+				}
+			}
+		});
         
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
@@ -214,13 +225,13 @@ public class Startansicht {
     	ArrayList<String> results = new ArrayList<String>();
     	ArrayList<Integer> resultColumns = new ArrayList<Integer>();
     	ArrayList<Integer> resultRows = new ArrayList<Integer>();
-    	for(int i=0; i < table.getRowCount(); i++) 
-    	{
-    		for (int j=0; j < table.getColumnCount(); j++)
-    		{
+    	for(int i=0; i < table.getRowCount(); i++) {
+    		for (int j=0; j < table.getColumnCount(); j++) {
     			String cell = (String) table.getModel().getValueAt(i,j);
     			if (cell != null && cell.contains(searchText)) {
-    				if (!klasseAuswahl.getSelectedItem().equals(ALLE_KLASSEN)) {
+    				if (!klasseAuswahl.getSelectedItem().toString()
+    						.equals(ALLE_KLASSEN)) {
+    					// Nach Klassen filtern
     					int ccl = -1;
     					for (int ci = 0; ci < table.getColumnCount(); ci++) {
     						if (table.getColumnName(ci).equals("Klasse")) {
@@ -229,7 +240,8 @@ public class Startansicht {
     						}
     					}
     					
-    					if (ccl != -1 && !table.getModel().getValueAt(i, ccl).equals(
+    					if (ccl != -1 && !table.getModel().
+    							getValueAt(i, ccl).toString().startsWith(
     							klasseAuswahl.getSelectedItem().toString())) {
     						break;
     					}
@@ -243,25 +255,21 @@ public class Startansicht {
     	}
     	//lb.setText(results.toString());
     	for (int i = 0; i < results.size(); i++) {
-    		table.getModel().setValueAt(new HighlightedString(results.get(i)),
+    		table.getModel().setValueAt(
+    				searchText.equals("") ?
+    						results.get(i) :
+    						// Wenn Suchfeld leer ist, nichts highlighten
+    						new HighlightedString(results.get(i)),
     				resultRows.get(i), resultColumns.get(i));
     	}
     	if (cbResultsViewToggle.isSelected()) {
     		for(int i=table.getRowCount()-1; i >= 0; i--) {
     			if (!resultRows.contains(i)) {
     				((DefaultTableModel) table.getModel()).removeRow(i);
-    			}
-    			
-    		}
-    	
+    			}	
+    		}	
     	}
     }
-	
-	
-	
-	
-	
-	
 	
 	private static void addPrintButton(){
 		print = new JButton("Drucken");
@@ -275,14 +283,17 @@ public class Startansicht {
 		print.addActionListener(printAL);
 	}
 	
-	private static JLabel getImg(){
+	private static JLabel getImg() {
 		JLabel klsLogoLabel = new JLabel();
 		try{
 			BufferedImage klsLogo = ImageIO.read(new File("kls_logo.png"));
 			klsLogoLabel = new JLabel(new ImageIcon(klsLogo));
-		} catch(Exception e) {System.out.println("Fehler beim Laden des Bildes: " + e);}
+		} catch(Exception e) {
+			System.out.println("Fehler beim Laden des Bildes: " + e);
+		}
 		return klsLogoLabel;
 	}
+	
 	private static JLabel getTitelLabel(){
 		JLabel titelLabel = new JLabel("<html><body>"
 				+ "K�NIGIN-LUISE-STIFTUNG BERLIN <br> SCHULDATENBANK"
