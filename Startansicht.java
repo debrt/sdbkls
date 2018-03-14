@@ -1,8 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -40,7 +44,10 @@ public class Startansicht {
     static JPanel tab1W;
     static JPanel tab1E;
     static JPanel tab1C;
+    static JComboBox klasseAuswahl;
     static ActionListener printAL;
+    
+    static final String ALLE_KLASSEN = "*ALLE*";
     
     public static JTable getTable() {
     	return table;
@@ -110,6 +117,19 @@ public class Startansicht {
 				suche.setText("");
 			}
 		});
+        suche.addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent e) { }
+			public void focusGained(FocusEvent e) {
+				if (searchTextAreaHasBeenUsed) {
+					return;
+				}
+				
+				searchTextAreaHasBeenUsed = true;
+				
+				suche.setForeground(Color.BLACK);
+				suche.setText("");
+			}
+		});
         
         cbResultsViewToggle = new JCheckBox("nur Suchergebnisse anzeigen");
         cbResultsViewToggle.setSelected(true);
@@ -118,11 +138,13 @@ public class Startansicht {
         suche.setColumns(20);
         
         JButton clearSuche = new JButton("X");
-        clearSuche.setBackground(Color.red);
+        clearSuche.setFont(suche.getFont());
+        clearSuche.setMargin(new Insets(0, 6, 0, 6));
         clearSuche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				suche.setText("");
 				suche.requestFocus();
+				searchTextAreaHasBeenUsed = true;
 			}
 		});        
         
@@ -130,8 +152,8 @@ public class Startansicht {
         tab1NR.add(getImg());
         JLabel klassenAuswahlLabel = new JLabel(" in Klasse bzw. Stufe");
         klassenAuswahlLabel.setForeground(Color.WHITE);
-        String[] klassen = {"*ALLE*","7","8","9","10","Q1","Q2","Q3","Q4"};
-        JComboBox klasseAuswahl = new JComboBox(klassen);
+        String[] klassen = {ALLE_KLASSEN,"7","8","9","10","Q1","Q2","Q3","Q4"};
+        klasseAuswahl = new JComboBox(klassen);
         tab1NR.add(suche);
         tab1NR.add(clearSuche);
         tab1NR.add(klassenAuswahlLabel);
@@ -198,6 +220,21 @@ public class Startansicht {
     		{
     			String cell = (String) table.getModel().getValueAt(i,j);
     			if (cell != null && cell.contains(searchText)) {
+    				if (!klasseAuswahl.getSelectedItem().equals(ALLE_KLASSEN)) {
+    					int ccl = -1;
+    					for (int ci = 0; ci < table.getColumnCount(); ci++) {
+    						if (table.getColumnName(ci).equals("Klasse")) {
+    							ccl = ci;
+    							break;
+    						}
+    					}
+    					
+    					if (ccl != -1 && !table.getModel().getValueAt(i, ccl).equals(
+    							klasseAuswahl.getSelectedItem().toString())) {
+    						break;
+    					}
+    				}
+    				
     				results.add(cell);
     				resultColumns.add(j);
     				resultRows.add(i);
