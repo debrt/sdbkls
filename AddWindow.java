@@ -15,7 +15,7 @@ public class AddWindow extends JFrame {
 		super("SchÃ¼ler hinzufÃ¼gen");
 		
 		setLayout(new GridBagLayout());
-		
+		//TO DO: die Felder über einen for-loop hinzufügen, der die überschriften der tabelle ausliest (siehe Suchkonfiguration buttons)
 		JLabel nameLabel = new JLabel("Nachname: ");
 		JLabel vornameLabel = new JLabel("Vorname: ");
 		JLabel klasseLabel = new JLabel("Klasse: ");

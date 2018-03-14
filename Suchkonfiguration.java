@@ -13,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Suchkonfiguration{
    
@@ -55,9 +57,50 @@ public class Suchkonfiguration{
 		//Setup der Auswahl von Presets (vordefinierten Ansichtseinstellungen)
 		JLabel presetLabel = new JLabel("Preset: ");
         presetLabel.setForeground(Color.WHITE);
-        String[] presets = {"Schüler*innen", "Erziehungsberechtigte", "Klassendaten"};
+        String[] presets = {"Individuelle Einstellung", "Schüler*innen", "Erziehungsberechtigte", "Klassendaten"};
         JComboBox<String> presetAuswahl= new JComboBox<String>(presets);
         presetAuswahl.setMaximumSize(new Dimension(150,28));
+        
+        presetAuswahl.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ae) {
+				if (presetAuswahl.getSelectedIndex() == 0){
+					System.out.println("Individuelle Selektion - nichts ändert sich");
+				} else if (presetAuswahl.getSelectedIndex() == 1){
+					System.out.println("Schüler*innen");
+					checkboxen.get(0).setSelected(true);
+					checkboxen.get(1).setSelected(true);
+					checkboxen.get(2).setSelected(true);
+					checkboxen.get(3).setSelected(true);
+					checkboxen.get(4).setSelected(false);
+					checkboxen.get(5).setSelected(false);
+					checkboxen.get(6).setSelected(false);
+					checkboxen.get(7).setSelected(false);
+					checkboxen.get(8).setSelected(false);
+				} else if (presetAuswahl.getSelectedIndex() == 2){
+					System.out.println("Erziehungsberechtigte");
+					checkboxen.get(0).setSelected(false);
+					checkboxen.get(1).setSelected(true);
+					checkboxen.get(2).setSelected(true);
+					checkboxen.get(3).setSelected(false);
+					checkboxen.get(4).setSelected(true);
+					checkboxen.get(5).setSelected(false);
+					checkboxen.get(6).setSelected(true);
+					checkboxen.get(7).setSelected(false);
+					checkboxen.get(8).setSelected(true);
+				} else if (presetAuswahl.getSelectedIndex() == 3){
+					System.out.println("Klassenansicht");
+					checkboxen.get(0).setSelected(true);
+					checkboxen.get(1).setSelected(false);
+					checkboxen.get(2).setSelected(true);
+					checkboxen.get(3).setSelected(false);
+					checkboxen.get(4).setSelected(false);
+					checkboxen.get(5).setSelected(false);
+					checkboxen.get(6).setSelected(false);
+					checkboxen.get(7).setSelected(false);
+					checkboxen.get(8).setSelected(false);
+				}
+			}});
+        
         //Hinzufügen der Preset-Auswahl zum linken Seit-Panel
         tab1W.add(presetLabel);
 		tab1W.add(presetAuswahl);
@@ -140,4 +183,6 @@ public class Suchkonfiguration{
 			} else columnIndex++;
 		}
 	}
+	
+	
 }
