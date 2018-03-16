@@ -34,6 +34,7 @@ public class Suchkonfiguration{
     	auswahl();
     	titelZeile();
     	applyButton();
+    	savePresetButton();
     	presets();
     	
     	konfiguration = new JPanel();
@@ -153,6 +154,7 @@ public class Suchkonfiguration{
 		//Setup des rechtsseitigen Panels
 		tab1E = new JPanel();
         tab1E.setBackground(new Color(1,68,131));
+        tab1E.setLayout(new BoxLayout(tab1E, BoxLayout.Y_AXIS));
         //Hinzufügen eines Knopfes zum übernehmen der Auswahl
         JButton filtern = new JButton("Filter übernehmen");
         //Setup & HInzufügen der Funktionalität dieses Knopfes
@@ -163,6 +165,21 @@ public class Suchkonfiguration{
         });
         //Hinzufügen des Knopfes zum rechtsseitigen Panel 
     	tab1E.add(filtern);
+	}
+	static void savePresetButton(){
+        //Hinzufügen eines Knopfes zum speichern der Auswahl
+        JButton speichern = new JButton("<html><body>"
+        		+ "Filter für mein<br>Profil speichern</body></html>");
+        //Setup & HInzufügen der Funktionalität dieses Knopfes
+        speichern.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		/*Hier sollte das Preset in eine Datei geschrieben werden, aus der beim
+        		 * Login das Preset ausgelesen wird. Dies ist noch nicht implementiert.
+        		 */
+        	}
+        });
+        //Hinzufügen des Knopfes zum rechtsseitigen Panel 
+    	tab1E.add(speichern);
 	}    
 	
 	public static void applyAttributeSelection(){
